@@ -167,6 +167,8 @@ object PreferenceKeys {
     const val downloadNewCategories = "download_new_categories"
     const val downloadNewCategoriesExclude = "download_new_categories_exclude"
 
+    const val folderPerManga = "create_folder_per_manga"
+
     const val libraryDisplayMode = "pref_display_mode_library"
 
     const val lang = "app_language"
