@@ -18,6 +18,7 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
+import eu.kanade.tachiyomi.extension.ExtensionUpdateJob
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.util.preference.*
 import eu.kanade.tachiyomi.util.system.toast
@@ -64,6 +65,12 @@ class SettingsDownloadController : SettingsController() {
             titleRes = R.string.pref_create_folder_per_manga
             summaryRes = R.string.pref_create_folder_per_manga_summary
             defaultValue = false
+
+            onChange { newValue ->
+                val checked = newValue as Boolean
+                //ExtensionUpdateJob.setupTask(activity!!, checked) TODO:change what it does
+                true
+            }
         }
         preferenceCategory {
             titleRes = R.string.pref_category_delete_chapters
