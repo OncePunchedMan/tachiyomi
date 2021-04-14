@@ -203,7 +203,7 @@ class PreferencesHelper(val context: Context) {
 
     fun downloadOnlyOverWifi() = prefs.getBoolean(Keys.downloadOnlyOverWifi, true)
 
-    fun folderPerManga() = prefs.getBoolean(Keys.folderPerManga, false) //TODO:keep?
+    fun folderPerManga() = prefs.getBoolean(Keys.folderPerManga, false)
 
     fun numberOfBackups() = flowPrefs.getInt(Keys.numberOfBackups, 1)
 

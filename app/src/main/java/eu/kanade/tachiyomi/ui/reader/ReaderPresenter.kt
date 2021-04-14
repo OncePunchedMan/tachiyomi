@@ -556,20 +556,33 @@ class ReaderPresenter(
         notifier.onClear()
 
         // Pictures directory.
+        // TODO:make it nicer
+        var putDestDirTogether: String = "null"
+        val destDirOneFolder = Environment.getExternalStorageDirectory().absolutePath +
+            File.separator + Environment.DIRECTORY_PICTURES +
+            File.separator + context.getString(R.string.app_name)
 
-        //TODO:check on activity and choose according to the setting
-        val destDir_single = File(
-                Environment.getExternalStorageDirectory().absolutePath +
-                        File.separator + Environment.DIRECTORY_PICTURES +
-                        File.separator + context.getString(R.string.app_name) +
-                        File.separator + manga.title
-        )
+        val destDirMultipleFolders = File.separator + manga.title
 
+        if (preferences.folderPerManga()) {
+            Timber.d("path 1 %s", destDirOneFolder)
+            Timber.d("path 2 %s", destDirMultipleFolders)
+            putDestDirTogether = destDirOneFolder + destDirMultipleFolders
+            Timber.d("path to folder %s", putDestDirTogether)
+        } else {
+            putDestDirTogether = destDirOneFolder
+        }
+
+        val destDir = File(putDestDirTogether)
+
+        /*
         val destDir = File(
             Environment.getExternalStorageDirectory().absolutePath +
                 File.separator + Environment.DIRECTORY_PICTURES +
                 File.separator + context.getString(R.string.app_name)
         )
+
+         */
 
         // Copy file in background.
         Observable.fromCallable { saveImage(page, destDir, manga) }
